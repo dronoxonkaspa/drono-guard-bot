@@ -9,20 +9,21 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(circle at 40% 50%, #001018 0%, #000 100%);
+  background:radial-gradient(circle at 35% 50%, #000a0f 0%, #000 100%);
   color:#fff;
   font-family:'Rajdhani',sans-serif;
-  perspective:800px;
+  perspective:900px;
   animation:bgShift 18s ease-in-out infinite;
 }
 
+/* --- Subtle animated background gradient --- */
 @keyframes bgShift {
-  0% { background: radial-gradient(circle at 20% 50%, #001018 0%, #000 100%); }
-  50% { background: radial-gradient(circle at 70% 60%, #002a35 0%, #000 100%); }
-  100% { background: radial-gradient(circle at 20% 50%, #001018 0%, #000 100%); }
+  0% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
+  50% { background: radial-gradient(circle at 70% 60%, #00212e 0%, #000 100%); }
+  100% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
 }
 
-/* --- Scene --- */
+/* --- Scene (for parallax hover) --- */
 #scene {
   position:relative;
   width:100%;
@@ -31,7 +32,7 @@ body {
   transition:transform .4s ease;
 }
 
-/* --- Falling Particles --- */
+/* --- Floating particles (the original drift-up effect) --- */
 .particles {
   position:absolute;
   inset:0;
@@ -42,19 +43,21 @@ body {
 
 .particles span {
   position:absolute;
-  width:2px; height:12px;
-  background:linear-gradient(to bottom, rgba(0,255,200,.9), rgba(0,255,200,0));
-  border-radius:2px;
-  animation:falling 8s linear infinite;
-  opacity:0.8;
+  width:3px;
+  height:3px;
+  background:rgba(0,255,200,0.5);
+  border-radius:50%;
+  box-shadow:0 0 10px rgba(0,255,200,0.4);
+  animation:floatUp 15s linear infinite;
 }
 
-@keyframes falling {
-  0% { transform:translateY(-120%); opacity:0.8; }
-  100% { transform:translateY(120vh); opacity:0.3; }
+@keyframes floatUp {
+  0% { transform:translateY(100vh) scale(1); opacity:0.6; }
+  50% { opacity:1; }
+  100% { transform:translateY(-10vh) scale(1.2); opacity:0.6; }
 }
 
-/* --- Hero --- */
+/* --- Hero content --- */
 .hero {
   position:relative;
   z-index:2;
@@ -77,7 +80,7 @@ body {
 }
 
 .hero p {
-  color:#8cd8ff;
+  color:#9ae4ff;
   font-size:1.2rem;
   max-width:520px;
   line-height:1.6em;
@@ -102,12 +105,14 @@ body {
   background:rgba(0,0,0,0.25);
   backdrop-filter:blur(4px);
 }
+
 .buttons a:hover {
   background:#00eaff;
   color:#000;
   box-shadow:0 0 25px #00eaff;
 }
 
+/* --- Footer --- */
 footer {
   position:absolute;
   bottom:15px;
@@ -119,6 +124,7 @@ footer {
   text-shadow:0 0 8px rgba(0,255,255,0.2);
 }
 
+/* --- Fade In --- */
 @keyframes fadeIn {
   from { opacity:0; transform:translateY(30px); }
   to { opacity:1; transform:translateY(0); }
