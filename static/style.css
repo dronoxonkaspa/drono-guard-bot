@@ -11,6 +11,12 @@ body {
   justify-content:center;
   align-items:center;
   perspective:800px;
+  animation:bgFade 3s ease-in-out forwards;
+}
+
+@keyframes bgFade {
+  from {opacity:0;}
+  to {opacity:1;}
 }
 
 /* --- Parallax container --- */
@@ -20,6 +26,12 @@ body {
   height:100%;
   transform-style:preserve-3d;
   transition:transform 0.3s ease;
+  animation:slowZoom 4s ease-in-out forwards;
+}
+
+@keyframes slowZoom {
+  from { transform:scale(1) translateZ(0); opacity:0; }
+  to { transform:scale(1.05) translateZ(20px); opacity:1; }
 }
 
 /* --- Particles --- */
@@ -45,7 +57,7 @@ body {
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;
-  animation:fadeIn 2s ease-in-out;
+  animation:fadeIn 2.5s ease-in-out;
 }
 .hero h1 {
   font-size:3rem;
@@ -53,6 +65,7 @@ body {
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   margin-bottom:.5em;
+  text-shadow:0 0 15px rgba(0,255,200,0.3);
 }
 .hero p {
   font-size:1.2rem;
