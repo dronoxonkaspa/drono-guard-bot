@@ -7,25 +7,36 @@
   <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
 </head>
 <body>
-  <!-- Particle Layer -->
-  <div class='particles'>
-    {% for i in range(60) %}
-      <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
-    {% endfor %}
+  <div id='scene'>
+    <!-- Particle Layer -->
+    <div class='particles'>
+      {% for i in range(60) %}
+        <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
+      {% endfor %}
+    </div>
+
+    <main class='hero'>
+      <h1>🛡️ Dronox Guard</h1>
+      <p>Protecting the Dronox Ecosystem — NFT Verification & Ownership Layer</p>
+
+      <div class='buttons'>
+        <a href='/nft/1' target='_blank'>View NFT Metadata</a>
+        <a href='/verify/testwallet' target='_blank'>Verify Wallet</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Dronox on Kaspa | All Rights Reserved</p>
+    </footer>
   </div>
 
-  <main class='hero'>
-    <h1>🛡️ Dronox Guard</h1>
-    <p>Protecting the Dronox Ecosystem — NFT Verification & Ownership Layer</p>
-
-    <div class='buttons'>
-      <a href='/nft/1' target='_blank'>View NFT Metadata</a>
-      <a href='/verify/testwallet' target='_blank'>Verify Wallet</a>
-    </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Dronox on Kaspa | All Rights Reserved</p>
-  </footer>
+  <script>
+    const scene = document.getElementById('scene');
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      scene.style.transform = otateY(deg) rotateX(deg);
+    });
+  </script>
 </body>
 </html>
