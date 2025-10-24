@@ -32,11 +32,22 @@
 
   <script>
     const scene = document.getElementById('scene');
+
+    // --- Mouse Parallax ---
     document.addEventListener('mousemove', e => {
       const x = (e.clientX / window.innerWidth - 0.5) * 10;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
       scene.style.transform = otateY(deg) rotateX(deg);
     });
+
+    // --- Gyroscope Parallax for Mobile ---
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', e => {
+        const x = e.gamma / 10; // left/right tilt
+        const y = e.beta / 10;  // front/back tilt
+        scene.style.transform = otateY(deg) rotateX(deg);
+      });
+    }
   </script>
 </body>
 </html>
