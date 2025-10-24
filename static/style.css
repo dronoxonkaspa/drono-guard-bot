@@ -1,131 +1,104 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron',sans-serif; }
 
 body {
   height:100vh;
+  background:radial-gradient(ellipse at center,#020617 0%,#000 100%);
+  color:#fff;
   overflow:hidden;
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:radial-gradient(circle at 35% 50%, #000a0f 0%, #000 100%);
-  color:#fff;
-  font-family:'Rajdhani',sans-serif;
-  perspective:900px;
-  animation:bgShift 18s ease-in-out infinite;
+  align-items:center;
+  perspective:800px;
 }
 
-/* --- Subtle animated background gradient --- */
-@keyframes bgShift {
-  0% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
-  50% { background: radial-gradient(circle at 70% 60%, #00212e 0%, #000 100%); }
-  100% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
-}
-
-/* --- Scene (for parallax hover) --- */
+/* --- Parallax container --- */
 #scene {
   position:relative;
   width:100%;
   height:100%;
   transform-style:preserve-3d;
-  transition:transform .4s ease;
+  transition:transform 0.3s ease;
 }
 
-/* --- Floating particles (the original drift-up effect) --- */
+/* --- Particles (floating upward) --- */
 .particles {
   position:absolute;
   inset:0;
-  z-index:1;
-  pointer-events:none;
+  z-index:0;
   overflow:hidden;
 }
-
 .particles span {
   position:absolute;
-  width:3px;
-  height:3px;
+  display:block;
+  width:4px;
+  height:4px;
   background:rgba(0,255,200,0.5);
   border-radius:50%;
-  box-shadow:0 0 10px rgba(0,255,200,0.4);
-  animation:floatUp 15s linear infinite;
+  animation:float 15s linear infinite;
+}
+@keyframes float {
+  0%   { transform:translateY(100vh) scale(1); opacity:.6; }
+  50%  { opacity:.9; transform:translateY(40vh) scale(1.1); }
+  100% { transform:translateY(-10vh) scale(1.2); opacity:.6; }
 }
 
-@keyframes floatUp {
-  0% { transform:translateY(100vh) scale(1); opacity:0.6; }
-  50% { opacity:1; }
-  100% { transform:translateY(-10vh) scale(1.2); opacity:0.6; }
-}
-
-/* --- Hero content --- */
+/* --- Hero --- */
 .hero {
   position:relative;
   z-index:2;
-  text-align:center;
+  height:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  height:100%;
-  animation:fadeIn 2.5s ease-in-out;
+  text-align:center;
+  animation:fadeIn 2s ease-in-out;
 }
-
 .hero h1 {
-  font-family:'Orbitron',sans-serif;
-  font-size:3.5rem;
-  color:#00eaff;
-  text-shadow:0 0 25px rgba(0,234,255,0.4);
-  margin-bottom:.4em;
-  letter-spacing:2px;
+  font-size:3rem;
+  background:linear-gradient(90deg,#00d4ff,#00ffa3);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.5em;
 }
-
 .hero p {
-  color:#9ae4ff;
   font-size:1.2rem;
-  max-width:520px;
-  line-height:1.6em;
+  color:#a0a0a0;
+  max-width:500px;
+  line-height:1.5em;
 }
-
 .buttons {
-  margin-top:2.5em;
+  margin-top:2em;
   display:flex;
-  gap:1.2em;
+  gap:1em;
 }
-
 .buttons a {
   text-decoration:none;
-  color:#00eaff;
-  border:2px solid #00eaff;
-  padding:.9em 1.8em;
+  color:#fff;
+  border:2px solid #00d4ff;
+  padding:.8em 1.5em;
   border-radius:30px;
-  font-weight:600;
-  letter-spacing:.5px;
-  text-transform:uppercase;
   transition:all .3s ease;
-  background:rgba(0,0,0,0.25);
-  backdrop-filter:blur(4px);
 }
-
 .buttons a:hover {
-  background:#00eaff;
+  background:#00d4ff;
   color:#000;
-  box-shadow:0 0 25px #00eaff;
+  box-shadow:0 0 20px #00d4ff;
 }
 
-/* --- Footer --- */
 footer {
   position:absolute;
-  bottom:15px;
+  bottom:10px;
   width:100%;
   text-align:center;
-  color:#3ca0c8;
-  font-size:.85rem;
+  color:#666;
+  font-size:.8rem;
   z-index:3;
-  text-shadow:0 0 8px rgba(0,255,255,0.2);
 }
 
-/* --- Fade In --- */
 @keyframes fadeIn {
-  from { opacity:0; transform:translateY(30px); }
-  to { opacity:1; transform:translateY(0); }
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
 }
