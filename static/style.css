@@ -1,137 +1,125 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 30% 50%, #001018 0%, #000000 100%);
-  color: #fff;
-  font-family: 'Rajdhani', sans-serif;
-  perspective: 900px;
-  animation: bgShift 15s ease-in-out infinite;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle at 40% 50%, #001018 0%, #000 100%);
+  color:#fff;
+  font-family:'Rajdhani',sans-serif;
+  perspective:800px;
+  animation:bgShift 18s ease-in-out infinite;
 }
 
-/* --- Subtle animated background gradient --- */
 @keyframes bgShift {
-  0% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
-  50% { background: radial-gradient(circle at 70% 60%, #00212e 0%, #000 100%); }
-  100% { background: radial-gradient(circle at 20% 40%, #001018 0%, #000 100%); }
+  0% { background: radial-gradient(circle at 20% 50%, #001018 0%, #000 100%); }
+  50% { background: radial-gradient(circle at 70% 60%, #002a35 0%, #000 100%); }
+  100% { background: radial-gradient(circle at 20% 50%, #001018 0%, #000 100%); }
 }
 
-/* --- Scene (for parallax hover) --- */
+/* --- Scene --- */
 #scene {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease;
-  animation: fadeIn 2.5s ease-in-out forwards;
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform .4s ease;
 }
 
-/* --- Particles --- */
+/* --- Falling Particles --- */
 .particles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  overflow:hidden;
 }
 
 .particles span {
-  position: absolute;
-  display: block;
-  width: 2px;
-  height: 2px;
-  background: rgba(0, 255, 200, 0.6);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(0, 255, 200, 0.3);
-  animation: fall 10s linear infinite;
+  position:absolute;
+  width:2px; height:12px;
+  background:linear-gradient(to bottom, rgba(0,255,200,.9), rgba(0,255,200,0));
+  border-radius:2px;
+  animation:falling 8s linear infinite;
+  opacity:0.8;
 }
 
-@keyframes fall {
-  0% { transform: translateY(-10vh); opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { transform: translateY(110vh); opacity: 0.6; }
+@keyframes falling {
+  0% { transform:translateY(-120%); opacity:0.8; }
+  100% { transform:translateY(120vh); opacity:0.3; }
 }
 
-/* --- Hero Content --- */
+/* --- Hero --- */
 .hero {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  position:relative;
+  z-index:2;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  animation:fadeIn 2.5s ease-in-out;
 }
 
 .hero h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3.5rem;
-  color: #00d4ff;
-  text-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
-  margin-bottom: 0.4em;
-  letter-spacing: 2px;
+  font-family:'Orbitron',sans-serif;
+  font-size:3.5rem;
+  color:#00eaff;
+  text-shadow:0 0 25px rgba(0,234,255,0.4);
+  margin-bottom:.4em;
+  letter-spacing:2px;
 }
 
 .hero p {
-  color: #9ae4ff;
-  font-size: 1.2rem;
-  max-width: 520px;
-  line-height: 1.5em;
+  color:#8cd8ff;
+  font-size:1.2rem;
+  max-width:520px;
+  line-height:1.6em;
 }
 
-/* --- Buttons --- */
 .buttons {
-  margin-top: 2.5em;
-  display: flex;
-  gap: 1.2em;
+  margin-top:2.5em;
+  display:flex;
+  gap:1.2em;
 }
 
 .buttons a {
-  text-decoration: none;
-  color: #00eaff;
-  border: 2px solid #00eaff;
-  padding: 0.9em 1.8em;
-  border-radius: 30px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(4px);
+  text-decoration:none;
+  color:#00eaff;
+  border:2px solid #00eaff;
+  padding:.9em 1.8em;
+  border-radius:30px;
+  font-weight:600;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  transition:all .3s ease;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(4px);
 }
-
 .buttons a:hover {
-  background: #00eaff;
-  color: #000;
-  box-shadow: 0 0 25px #00eaff;
+  background:#00eaff;
+  color:#000;
+  box-shadow:0 0 25px #00eaff;
 }
 
-/* --- Footer --- */
 footer {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  color: #3ca0c8;
-  font-size: 0.85rem;
-  z-index: 3;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+  position:absolute;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  color:#3ca0c8;
+  font-size:.85rem;
+  z-index:3;
+  text-shadow:0 0 8px rgba(0,255,255,0.2);
 }
 
-/* --- Fade in animation --- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
 }
