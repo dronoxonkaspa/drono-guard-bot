@@ -9,10 +9,8 @@
 </head>
 <body>
   <div id='scene'>
-    <!-- Grid Overlay -->
     <div class='grid-overlay'></div>
 
-    <!-- Particle Layer -->
     <div class='particles'>
       {% for i in range(60) %}
         <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
@@ -35,7 +33,7 @@
     </footer>
   </div>
 
-  <!-- Next Section -->
+  <!-- Ecosystem Overview -->
   <section id='overview' class='overview'>
     <h2>Ecosystem Overview</h2>
     <p class='intro'>
@@ -48,15 +46,40 @@
         <h3>Layer-1 Infrastructure</h3>
         <p>Core modules that maintain decentralized uptime, throughput, and consensus within the Kaspa base chain.</p>
       </div>
-
       <div class='card'>
         <h3>Layer-2 Integrations</h3>
         <p>Seamless interoperability for protocols built above Kaspa — scaling transactions and expanding network logic.</p>
       </div>
-
       <div class='card'>
         <h3>Verification & Security</h3>
         <p>Real-time verification layers powered by Dronox, securing transactions across multiple nodes and chains.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Components -->
+  <section id='components' class='components'>
+    <h2>Core Components</h2>
+    <p class='intro'>
+      The Dronox Core stack is engineered for performance, resilience, and modularity — integrating key systems that power the Kaspa ecosystem.
+    </p>
+
+    <div class='grid'>
+      <div class='module'>
+        <h3>Validator Nodes</h3>
+        <p>Distributed verification endpoints ensuring consensus integrity across all Kaspa-connected layers.</p>
+      </div>
+      <div class='module'>
+        <h3>Kaspa Link</h3>
+        <p>Bridging systems for cross-layer communication, enabling data flow and liquidity between protocols.</p>
+      </div>
+      <div class='module'>
+        <h3>API Gateway</h3>
+        <p>Unified access for developers — real-time endpoints for analytics, transactions, and interoperability.</p>
+      </div>
+      <div class='module'>
+        <h3>Node Relay</h3>
+        <p>High-speed relay framework connecting validators, miners, and dApps under the Dronox Core architecture.</p>
       </div>
     </div>
   </section>

@@ -204,3 +204,59 @@ footer {
   font-size:1rem;
   line-height:1.5em;
 }
+/* --- Core Components Section --- */
+.components {
+  background:#020617;
+  padding:6em 2em;
+  text-align:center;
+  position:relative;
+  z-index:10;
+  border-top:1px solid rgba(0,212,255,0.15);
+}
+
+.components h2 {
+  font-family:'Michroma',sans-serif;
+  font-size:2rem;
+  color:#00ffa3;
+  margin-bottom:0.5em;
+  text-shadow:0 0 12px rgba(0,255,163,0.6);
+}
+
+.components .intro {
+  color:#a0a0a0;
+  max-width:750px;
+  margin:0 auto 3em;
+  line-height:1.6em;
+  font-size:1.1rem;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2em;
+  justify-content:center;
+  margin-top:3em;
+}
+
+.module {
+  background:rgba(5,15,25,0.85);
+  border:1px solid rgba(0,212,255,0.25);
+  border-radius:12px;
+  padding:2.5em 1.5em;
+  box-shadow:0 0 15px rgba(0,212,255,0.1);
+  transition:all .3s ease;
+}
+.module:hover {
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(0,255,200,0.25);
+}
+.module h3 {
+  color:#00d4ff;
+  font-size:1.4rem;
+  margin-bottom:0.5em;
+}
+.module p {
+  color:#ccc;
+  font-size:1rem;
+  line-height:1.5em;
+}
