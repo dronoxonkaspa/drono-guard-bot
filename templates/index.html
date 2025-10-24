@@ -9,6 +9,10 @@
 </head>
 <body>
   <div id='scene'>
+    <!-- Grid Overlay -->
+    <div class='grid-overlay'></div>
+
+    <!-- Particle Layer -->
     <div class='particles'>
       {% for i in range(60) %}
         <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
