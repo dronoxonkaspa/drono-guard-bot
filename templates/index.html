@@ -3,7 +3,8 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Dronox Guard</title>
+  <title>Dronox Core Network</title>
+  <link href='https://fonts.googleapis.com/css2?family=Michroma&display=swap' rel='stylesheet'>
   <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
 </head>
 <body>
@@ -16,35 +17,32 @@
     </div>
 
     <main class='hero'>
-      <h1>🛡️ Dronox Guard</h1>
-      <p>Protecting the Dronox Ecosystem — NFT Verification & Ownership Layer</p>
+      <h1>Dronox Core Network</h1>
+      <p>Supporting Layer-1 & Layer-2 infrastructure across the Kaspa ecosystem.<br>
+      Secure · Scalable · Powered by Dronox</p>
 
       <div class='buttons'>
-        <a href='/nft/1' target='_blank'>View NFT Metadata</a>
-        <a href='/verify/testwallet' target='_blank'>Verify Wallet</a>
+        <a href='/nft/1' target='_blank'>Explore Infrastructure</a>
+        <a href='/verify/testwallet' target='_blank'>Verify Integration</a>
       </div>
     </main>
 
     <footer>
-      <p>© 2025 Dronox on Kaspa | All Rights Reserved</p>
+      <p>© 2025 Dronox Ecosystem | Powered by Dronox</p>
     </footer>
   </div>
 
   <script>
     const scene = document.getElementById('scene');
-
-    // --- Mouse Parallax ---
     document.addEventListener('mousemove', e => {
       const x = (e.clientX / window.innerWidth - 0.5) * 10;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
       scene.style.transform = otateY(deg) rotateX(deg);
     });
-
-    // --- Gyroscope Parallax for Mobile ---
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', e => {
-        const x = e.gamma / 10; // left/right tilt
-        const y = e.beta / 10;  // front/back tilt
+        const x = e.gamma / 10;
+        const y = e.beta / 10;
         scene.style.transform = otateY(deg) rotateX(deg);
       });
     }
