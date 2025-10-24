@@ -1,24 +1,56 @@
 ﻿<!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Vision — Dronox Core</title>
-  <link href='https://fonts.googleapis.com/css2?family=Michroma&display=swap' rel='stylesheet'>
-  <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <section class='vision'>
-    <h2>The Vision</h2>
-    <p>
-      Building the foundation for decentralized infrastructure — bridging the gaps between innovation and scalability.<br>
-      <span>Built for Kaspa. Driven by Dronox.</span>
-    </p>
+  <nav class="navbar">
+    <div class="logo"><a href="/">DRONOX</a></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/core">Core</a>
+      <a href="/vision" class="active">Vision</a>
+    </div>
+  </nav>
 
-    <div class='cta'>
-      <a href='/' class='back'>← Return Home</a>
-      <a href='/core' class='next'>Explore Core Systems →</a>
+  <section class="vision-upgraded">
+    <div class="energy-wave"></div>
+    <div class="energy-core"></div>
+
+    <div class="vision-content">
+      <h1>The Vision</h1>
+      <p>
+        Shaping the backbone of decentralized infrastructure.<br />
+        Building pathways for scalability and innovation.<br />
+        <span>Built for Kaspa. Driven by Dronox.</span>
+      </p>
+      <div class="vision-line"></div>
+      <div class="vision-cta">
+        <a href="/core" class="back">← Explore Core Systems</a>
+        <a href="/" class="next">Return Home →</a>
+      </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      requestAnimationFrame(() => document.body.classList.add("fade-in"));
+      document.querySelectorAll("a[href]").forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        if (url.origin === window.location.origin) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => (window.location.href = link.href), 200);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

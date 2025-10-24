@@ -1,8 +1,11 @@
 ﻿services:
   - type: web
-    name: dronoguard-bot
+    name: dronox-core-network
     env: python
     plan: free
-    rootDirectory: .
     buildCommand: pip install -r requirements.txt
-    startCommand: python drono_guard_bot.py
+    startCommand: gunicorn drono_guard_bot:app
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.6

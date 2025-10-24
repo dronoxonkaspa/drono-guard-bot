@@ -1,30 +1,37 @@
 ﻿<!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dronox Core Network</title>
-  <link href='https://fonts.googleapis.com/css2?family=Michroma&display=swap' rel='stylesheet'>
-  <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <div id='scene'>
-    <div class='grid-overlay'></div>
+  <nav class="navbar">
+    <div class="logo"><a href="/">DRONOX</a></div>
+    <div class="links">
+      <a href="/" class="active">Home</a>
+      <a href="/core">Core</a>
+      <a href="/vision">Vision</a>
+    </div>
+  </nav>
 
-    <div class='particles'>
+  <div id="scene">
+    <div class="grid-overlay"></div>
+    <div class="particles">
       {% for i in range(60) %}
-        <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
+      <span style="left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;"></span>
       {% endfor %}
     </div>
 
-    <main class='hero'>
+    <main class="hero">
       <h1>Dronox Core Network</h1>
-      <p>Interconnected protocols. Unified vision.<br>Powered by Dronox.</p>
-      <div class='pulse-beam'></div>
-
-      <div class='buttons'>
-        <a href='#overview'>Explore Network</a>
-        <a href='/verify/testwallet' target='_blank'>Validate Node</a>
+      <p>Interconnected protocols. Unified vision.<br />Powered by Dronox.</p>
+      <div class="pulse-beam"></div>
+      <div class="buttons">
+        <a href="/core">Explore Core</a>
+        <a href="/vision">The Vision</a>
       </div>
     </main>
 
@@ -33,71 +40,21 @@
     </footer>
   </div>
 
-  <!-- Ecosystem Overview -->
-  <section id='overview' class='overview'>
-    <h2>Ecosystem Overview</h2>
-    <p class='intro'>
-      Dronox Core bridges every layer of the Kaspa ecosystem — enabling frictionless scalability, validation,
-      and communication between Layer-1 and Layer-2 protocols.
-    </p>
-
-    <div class='cards'>
-      <div class='card'>
-        <h3>Layer-1 Infrastructure</h3>
-        <p>Core modules that maintain decentralized uptime, throughput, and consensus within the Kaspa base chain.</p>
-      </div>
-      <div class='card'>
-        <h3>Layer-2 Integrations</h3>
-        <p>Seamless interoperability for protocols built above Kaspa — scaling transactions and expanding network logic.</p>
-      </div>
-      <div class='card'>
-        <h3>Verification & Security</h3>
-        <p>Real-time verification layers powered by Dronox, securing transactions across multiple nodes and chains.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Components -->
-  <section id='components' class='components'>
-    <h2>Core Components</h2>
-    <p class='intro'>
-      The Dronox Core stack is engineered for performance, resilience, and modularity — integrating key systems that power the Kaspa ecosystem.
-    </p>
-
-    <div class='grid'>
-      <div class='module'>
-        <h3>Validator Nodes</h3>
-        <p>Distributed verification endpoints ensuring consensus integrity across all Kaspa-connected layers.</p>
-      </div>
-      <div class='module'>
-        <h3>Kaspa Link</h3>
-        <p>Bridging systems for cross-layer communication, enabling data flow and liquidity between protocols.</p>
-      </div>
-      <div class='module'>
-        <h3>API Gateway</h3>
-        <p>Unified access for developers — real-time endpoints for analytics, transactions, and interoperability.</p>
-      </div>
-      <div class='module'>
-        <h3>Node Relay</h3>
-        <p>High-speed relay framework connecting validators, miners, and dApps under the Dronox Core architecture.</p>
-      </div>
-    </div>
-  </section>
-
   <script>
-    const scene = document.getElementById('scene');
-    document.addEventListener('mousemove', e => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 10;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      scene.style.transform = otateY(deg) rotateX(deg);
-    });
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', e => {
-        const x = e.gamma / 10;
-        const y = e.beta / 10;
-        scene.style.transform = otateY(deg) rotateX(deg);
+    document.addEventListener("DOMContentLoaded", () => {
+      requestAnimationFrame(() => document.body.classList.add("fade-in"));
+      document.querySelectorAll("a[href]").forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        if (url.origin === window.location.origin) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => (window.location.href = link.href), 200);
+          });
+        }
       });
-    }
+    });
   </script>
 </body>
 </html>

@@ -1,42 +1,68 @@
 ﻿<!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Core Components — Dronox Core</title>
-  <link href='https://fonts.googleapis.com/css2?family=Michroma&display=swap' rel='stylesheet'>
-  <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <section class='components'>
+  <nav class="navbar">
+    <div class="logo"><a href="/">DRONOX</a></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/core" class="active">Core</a>
+      <a href="/vision">Vision</a>
+    </div>
+  </nav>
+
+  <section class="components">
     <h2>Core Components</h2>
-    <p class='intro'>
+    <p class="intro">
       The Dronox Core stack is engineered for performance, resilience, and modularity — integrating key systems that power the Kaspa ecosystem.
     </p>
 
-    <div class='grid'>
-      <div class='module'>
+    <div class="grid">
+      <div class="module">
         <h3>Validator Nodes</h3>
         <p>Distributed verification endpoints ensuring consensus integrity across all Kaspa-connected layers.</p>
       </div>
-      <div class='module'>
+      <div class="module">
         <h3>Kaspa Link</h3>
         <p>Bridging systems for cross-layer communication, enabling data flow and liquidity between protocols.</p>
       </div>
-      <div class='module'>
+      <div class="module">
         <h3>API Gateway</h3>
         <p>Unified access for developers — real-time endpoints for analytics, transactions, and interoperability.</p>
       </div>
-      <div class='module'>
+      <div class="module">
         <h3>Node Relay</h3>
         <p>High-speed relay framework connecting validators, miners, and dApps under the Dronox Core architecture.</p>
       </div>
     </div>
 
-    <div class='nav-buttons'>
-      <a href='/' class='back'>← Back to Home</a>
-      <a href='/vision' class='next'>Next: The Vision →</a>
+    <div class="nav-buttons">
+      <a href="/">← Back to Home</a>
+      <a href="/vision">Next: The Vision →</a>
     </div>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      requestAnimationFrame(() => document.body.classList.add("fade-in"));
+      document.querySelectorAll("a[href]").forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        if (url.origin === window.location.origin) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => (window.location.href = link.href), 200);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
