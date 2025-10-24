@@ -1,0 +1,7 @@
+﻿services:
+  - type: web
+    name: drono-guard-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python drono_guard_bot.py
