@@ -1,12 +1,19 @@
-﻿from flask import Flask, jsonify, request, render_template
+﻿from flask import Flask, render_template, jsonify, request
 import os
 
 app = Flask(__name__)
 
-# --- Website Front Page ---
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template('index.html')
+
+@app.route('/core')
+def core():
+    return render_template('core.html')
+
+@app.route('/vision')
+def vision():
+    return render_template('vision.html')
 
 # --- NFT Metadata Route ---
 @app.route('/nft/<token_id>')
@@ -31,15 +38,6 @@ def verify(wallet_address):
         "message": "Wallet verified as official Dronox guardian."
     })
 
-# --- Auth Example (future use) ---
-@app.route('/auth', methods=['POST'])
-def auth_user():
-    payload = request.json
-    username = payload.get('username')
-    api_key = payload.get('api_key')
-    return jsonify({"authorized": True, "user": username})
-
-# --- Bind Port ---
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
