@@ -9,7 +9,6 @@
 </head>
 <body>
   <div id='scene'>
-    <!-- Particle Layer -->
     <div class='particles'>
       {% for i in range(60) %}
         <span style='left: {{ (loop.index * 3) % 100 }}%; top: {{ (loop.index * 17) % 100 }}%; animation-delay: {{ (loop.index * 0.5) % 10 }}s;'></span>
@@ -19,6 +18,7 @@
     <main class='hero'>
       <h1>Dronox Core Network</h1>
       <p>Interconnected protocols. Unified vision.<br>Powered by Dronox.</p>
+      <div class='pulse-beam'></div>
 
       <div class='buttons'>
         <a href='/nft/1' target='_blank'>Explore Network</a>
