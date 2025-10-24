@@ -1,22 +1,14 @@
-# drono_guard_bot.py
-# ------------------
-# A simple Flask-based web API for your NFT Guard project
-# Deploy this on Render as a Web Service
-
-from flask import Flask, jsonify, request
+﻿from flask import Flask, jsonify, request, render_template
 import os
 
 app = Flask(__name__)
 
-# Home page
+# --- Website Front Page ---
 @app.route('/')
 def home():
-    return """
-    <h1>🛡️ Drono Guard API</h1>
-    <p>Protecting the Dronox ecosystem — NFT verification & ownership layer.</p>
-    """
+    return render_template("index.html")
 
-# Example NFT metadata route
+# --- NFT Metadata Route ---
 @app.route('/nft/<token_id>')
 def nft_metadata(token_id):
     data = {
@@ -30,7 +22,7 @@ def nft_metadata(token_id):
     }
     return jsonify(data)
 
-# Example wallet verification route
+# --- Wallet Verification Route ---
 @app.route('/verify/<wallet_address>')
 def verify(wallet_address):
     return jsonify({
@@ -39,7 +31,7 @@ def verify(wallet_address):
         "message": "Wallet verified as official Dronox guardian."
     })
 
-# Example authentication route (future use)
+# --- Auth Example (future use) ---
 @app.route('/auth', methods=['POST'])
 def auth_user():
     payload = request.json
@@ -47,7 +39,7 @@ def auth_user():
     api_key = payload.get('api_key')
     return jsonify({"authorized": True, "user": username})
 
-# Bind to Render-assigned port
+# --- Bind Port ---
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
