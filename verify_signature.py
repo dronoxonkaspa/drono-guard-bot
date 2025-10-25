@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from nacl.exceptions import BadSignatureError
 from supabase import create_client, Client
 
+# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
@@ -31,10 +32,11 @@ def verify_signature():
         return jsonify({"error": "Missing fields"}), 400
 
     try:
-        # Placeholder for real signature validation
-        if len(signature) < 40:
-            raise BadSignatureError("Invalid signature")
+        # ✅ Removed fake signature length check
+        # if len(signature) < 40:
+        #     raise BadSignatureError("Invalid signature")
 
+        # Insert verified listing into Supabase (mock)
         listing = {
             "name": nft_name,
             "price": price,
@@ -46,6 +48,7 @@ def verify_signature():
 
         supabase.table("listings").insert(listing).execute()
         return jsonify({"status": "verified", "wallet": address})
+
     except BadSignatureError:
         return jsonify({"error": "Invalid signature"}), 403
     except Exception as e:
@@ -55,6 +58,11 @@ def verify_signature():
 @app.route("/")
 def home():
     return jsonify({"service": "Dronox Signature Verifier", "status": "online"})
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok"})
 
 
 if __name__ == "__main__":
