@@ -3,4 +3,5 @@ flask-cors
 pynacl
 supabase
 gunicorn
+python-dotenv
 

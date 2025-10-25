@@ -1,20 +1,21 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
-from nacl.signing import VerifyKey
+from dotenv import load_dotenv
 from nacl.exceptions import BadSignatureError
 from supabase import create_client, Client
 
-app = Flask(__name__)
-CORS(app)
+load_dotenv()
 
-# --- ENV VARIABLES ---
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# --- Supabase connection ---
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
-
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-# --- VERIFY ENDPOINT ---
+
 @app.route("/verify", methods=["POST"])
 def verify_signature():
     data = request.get_json()
@@ -30,7 +31,7 @@ def verify_signature():
         return jsonify({"error": "Missing fields"}), 400
 
     try:
-        # Placeholder for real Kaspa/EVM verification
+        # Placeholder for real signature validation
         if len(signature) < 40:
             raise BadSignatureError("Invalid signature")
 
@@ -45,15 +46,16 @@ def verify_signature():
 
         supabase.table("listings").insert(listing).execute()
         return jsonify({"status": "verified", "wallet": address})
-
     except BadSignatureError:
         return jsonify({"error": "Invalid signature"}), 403
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route("/")
 def home():
     return jsonify({"service": "Dronox Signature Verifier", "status": "online"})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
