@@ -10,15 +10,15 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# ✅ Expanded CORS setup for both localhost and deployed frontend
+# ✅ Expanded CORS setup for both localhost and future deployed frontend
 CORS(
     app,
     resources={
         r"/*": {
             "origins": [
-                "*",
-                "http://localhost:5173",
-                "https://dronoxonkaspa.netlify.app",
+                "http://localhost:5173",        # local React dev server
+                "https://dronoxonkaspa.netlify.app",  # future Netlify site
+                "*"                              # fallback for any origin
             ]
         }
     },
@@ -30,7 +30,6 @@ CORS(
 # --- Supabase connection ---
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
-
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 
@@ -49,11 +48,10 @@ def verify_signature():
 
     # Basic validation
     if not all([address, signature, message]):
-        print("⚠️ Missing fields in request:", data)
+        print("⚠️ Missing fields in request:", data, flush=True)
         return jsonify({"error": "Missing fields"}), 400
 
     try:
-        # ✅ Removed fake signature-length check
         listing = {
             "name": nft_name or "Unnamed NFT",
             "price": price or 0,
@@ -66,10 +64,10 @@ def verify_signature():
         try:
             # Attempt to insert into Supabase
             response = supabase.table("listings").insert(listing).execute()
-            print("✅ Supabase insert successful:", response)
+            print("✅ Supabase insert successful:", response, flush=True)
         except Exception as db_error:
             # Log database error but don't break wallet verification
-            print("⚠️ Supabase insert failed:", db_error)
+            print("⚠️ Supabase insert failed:", db_error, flush=True)
             return jsonify(
                 {
                     "status": "verified (no db)",
@@ -81,10 +79,10 @@ def verify_signature():
         return jsonify({"status": "verified", "wallet": address})
 
     except BadSignatureError:
-        print("❌ Invalid signature detected for wallet:", address)
+        print("❌ Invalid signature detected for wallet:", address, flush=True)
         return jsonify({"error": "Invalid signature"}), 403
     except Exception as e:
-        print("❌ Unexpected error in /verify:", e)
+        print("❌ Unexpected error in /verify:", e, flush=True)
         return jsonify({"error": str(e)}), 500
 
 
