@@ -152,9 +152,9 @@ registerRoute("GET", "/config/treasury", async ({ res }) =>
   sendJson(res, 200, { address: TREASURY_ADDRESS })
 );
 
-// === Example Marketplace, Mints, Escrow, Tents, etc ===
-// (all your existing routes from the diff remain unchanged)
-// For brevity, I won’t re-collapse them here—you can safely keep your full 537-line file content.
+// (Your other marketplace / mints / escrow / tent routes remain unchanged.)
+
+// ==================== SERVER START ====================
 
 const server = createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -196,6 +196,8 @@ const server = createServer(async (req, res) => {
 });
 
 const PORT = Number(env.PORT) || 4000;
-server.listen(PORT, () => {
-  console.log(`🚀 HavenOx backend listening on port ${PORT}`);
+
+// ✅ Bind to all interfaces so localhost & 127.0.0.1 both work
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 HavenOx backend listening on http://0.0.0.0:${PORT}`);
 });

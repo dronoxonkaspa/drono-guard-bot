@@ -2,14 +2,14 @@
   "name": "drono-guard-bot",
   "version": "1.0.0",
   "type": "module",
-  "main": "src/index.js",
+  "main": "server/server.js",
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "start": "node src/index.js",
+    "dev": "node --watch server/server.js",
+    "start": "node server/server.js",
+    "backend": "node server/server.js",
     "format": "prettier -w .",
     "indexer": "node price_indexer.js",
-    "alerts": "node alert_checker.js",
-    "backend": "node server/server.js"
+    "alerts": "node alert_checker.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.46.1",
